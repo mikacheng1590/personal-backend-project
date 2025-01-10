@@ -1,11 +1,12 @@
-const express = require('express')
-const app = express()
-const port = 4000
+import 'dotenv/config';
+import express from 'express';
+import paulasChoiceCronJob from './paulas-choice-cron-job/index.js';
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+const app = express();
+const port = process.env.PORT || 4000;
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`Mika's app listening on port ${port}`);
+  
+  paulasChoiceCronJob.start();
 })

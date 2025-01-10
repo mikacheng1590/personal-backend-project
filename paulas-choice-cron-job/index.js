@@ -26,6 +26,7 @@ const paulasChoiceCronJob = CronJob.from({
   cronTime: '0 0 * * *',
   onTick: async () => {
     const data = await getPaulasProductPrice(productUrl);
+    console.log(data);
 
     if (data.status && +data.price < USUAL_PRICE) {
       const htmlContent = `

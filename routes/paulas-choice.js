@@ -8,7 +8,7 @@ router.get('/price-check', async (req, res) => {
   try {
     const data = await getPaulasProductPrice(BHA_PRODUCT_URL);
     let statusCode = 200;
-    let msg = 'OK';
+    let msg = 'Successful request to Paula\'s Choice product price check.';
     
     if (data.status && +data.price < BHA_USUAL_PRICE) {
       const htmlContent = `
@@ -24,7 +24,7 @@ router.get('/price-check', async (req, res) => {
         html: htmlContent
       });
       
-      msg = 'Email sent';
+      msg = 'Price drop detected and email sent.';
     } else if (!data.status) {
       statusCode = 500;
 
@@ -39,12 +39,12 @@ router.get('/price-check', async (req, res) => {
         `
       });
 
-      msg = 'Error fetching';
+      msg = 'Error fetching product price.';
     }
 
     res.status(statusCode).send(msg);
   } catch (error) {
-    res.status(500).send('Error executing');
+    res.status(500).send('Error executing: ' , error);
   }
 });
 

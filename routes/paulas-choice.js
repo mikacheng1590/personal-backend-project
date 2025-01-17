@@ -5,10 +5,13 @@ import getPaulasProductPrice, { BHA_PRODUCT_URL, BHA_USUAL_PRICE } from '../util
 const router = express.Router();
 
 router.get('/price-check', async (req, res) => {
+  console.log('Checking price at ' + new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
+  
   try {
     const data = await getPaulasProductPrice(BHA_PRODUCT_URL);
     let statusCode = 200;
     let msg = 'OK';
+    console.log(data.status);
     
     if (data.status && +data.price < BHA_USUAL_PRICE) {
       const htmlContent = `

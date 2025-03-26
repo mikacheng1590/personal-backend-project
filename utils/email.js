@@ -20,7 +20,7 @@ const sendEmail = async ({
 }) => {
   let data = {
     from,
-    to,
+    to: to.join(','),
     subject,
     ...(text && { text }),
     ...(html && { html }),

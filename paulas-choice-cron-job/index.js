@@ -17,13 +17,13 @@ const paulasChoiceCronJob = CronJob.from({
       `;
 
       sendEmail({
-        to: process.env.SELF_EMAIL_ADDRESS,
+        to: [process.env.SELF_EMAIL_ADDRESS],
         subject: `[TO SELF: PRICE DROP!] ${data.productName}`,
         html: htmlContent
       });
     } else if (!data.status) {
       sendEmail({
-        to: process.env.SELF_EMAIL_ADDRESS,
+        to: [process.env.SELF_EMAIL_ADDRESS],
         subject: `[TO SELF: ERROR!] Something's wrong with ${BHA_PRODUCT_URL}`,
         html: `
         <div>

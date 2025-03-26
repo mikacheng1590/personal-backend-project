@@ -22,7 +22,7 @@ router.get('/price-check', async (req, res) => {
       `;
 
       sendEmail({
-        to: process.env.SELF_EMAIL_ADDRESS,
+        to: [process.env.SELF_EMAIL_ADDRESS],
         subject: `[TO SELF: PRICE DROP!] ${data.productName}`,
         html: htmlContent
       });
@@ -32,7 +32,7 @@ router.get('/price-check', async (req, res) => {
       statusCode = 500;
 
       sendEmail({
-        to: process.env.SELF_EMAIL_ADDRESS,
+        to: [process.env.SELF_EMAIL_ADDRESS],
         subject: `[TO SELF: ERROR!] Something's wrong with ${BHA_PRODUCT_URL}`,
         html: `
         <div>

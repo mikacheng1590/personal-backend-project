@@ -14,13 +14,15 @@ const transporter = nodemailer.createTransport({
 const sendEmail = async ({
   from = process.env.DEV_EMAIL_ADDRESS,
   to,
+  bcc,
   subject,
   text = '',
   html = ''
 }) => {
   let data = {
     from,
-    to: to.join(','),
+    ...(to && { to: to.join(',') }),
+    ...(bcc && { bcc: bcc.join(',') }),
     subject,
     ...(text && { text }),
     ...(html && { html }),

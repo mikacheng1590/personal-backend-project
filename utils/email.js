@@ -73,19 +73,22 @@ export const sendBulkEmails = async ({
           to: recipient.email,
           subject: recipient.subject,
           ...(recipient.text && { text: recipient.text }),
-          ...(recipient.html && {...recipient.html})
+          ...(recipient.html && { html: recipient.html})
       })
    ) : [];
 
    const emailBccPromises = bcc.length > 0 ? bcc.map(recipient =>
     transporter.sendMail({
-        from: process.env.DEV_EMAIL_ADDRESS,
+        from,
         bcc: recipient.email,
         subject: recipient.subject,
         ...(recipient.text && { text: recipient.text }),
-        ...(recipient.html && {...recipient.html})
+        ...(recipient.html && { html: recipient.html})
     })
    ) : [];
+
+   console.log('emailToPromises ', emailToPromises)
+   console.log('emailBccPromises ', emailBccPromises)
 
    const results = await Promise.all([...emailToPromises, ...emailBccPromises])
 

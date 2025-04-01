@@ -87,9 +87,6 @@ export const sendBulkEmails = async ({
     })
    ) : [];
 
-   console.log('emailToPromises ', emailToPromises)
-   console.log('emailBccPromises ', emailBccPromises)
-
    const results = await Promise.all([...emailToPromises, ...emailBccPromises])
 
    return {
@@ -108,6 +105,5 @@ export const sendBulkEmails = async ({
     }
   }
 }
-
 
 export default sendEmail;

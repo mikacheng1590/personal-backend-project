@@ -80,7 +80,7 @@ export const sendBulkEmails = async ({
    const emailBccPromises = bcc.length > 0 ? bcc.map(recipient =>
     transporter.sendMail({
         from: process.env.DEV_EMAIL_ADDRESS,
-        to: recipient.email,
+        bcc: recipient.email,
         subject: recipient.subject,
         ...(recipient.text && { text: recipient.text }),
         ...(recipient.html && {...recipient.html})

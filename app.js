@@ -14,7 +14,7 @@ const basicAuthMiddleware = basicAuth({
 });
 
 app.use(bodyParser.json());
-app.use('/paulas-choice', paulasChoiceRoutes);
+app.use('/paulas-choice', basicAuthMiddleware, paulasChoiceRoutes);
 app.use('/ping', pingRoutes);
 app.use('/v1/email-service', basicAuthMiddleware, sendEmailRoutes);
 
